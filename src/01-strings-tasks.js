@@ -193,7 +193,9 @@ function extractEmails(str) {
  * @return {string}
  *
  * @example
- *
+ * ─ ─ ─ ─
+ * │
+ * ┌┐
  *            '┌────┐\n'+
  *  (6,4) =>  '│    │\n'+
  *            '│    │\n'+
@@ -207,10 +209,11 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const horizontal = '─'.repeat(width - 2);
+  const vertical = `│${' '.repeat(width - 2)}│\n`.repeat(height - 2);
+  return `┌${horizontal}┐\n${vertical}└${horizontal}┘\n`;
 }
-
 
 /**
  * Encode specified string with ROT13 cipher
@@ -228,8 +231,10 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const original = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const cipher = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  return str.replace(/[a-z]/gi, (lether) => cipher[original.indexOf(lether)]);
 }
 
 /**
