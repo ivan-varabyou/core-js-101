@@ -90,7 +90,7 @@ function getArrayOfStrings(arr) {
 
 /**
  * Removes falsy values from the specified array
- * Falsy values: false, null, 0, "", undefined, and NaN.
+ * Falsy values: false, null, 0, '', undefined, and NaN.
  * (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean#Description)
  *
  * @param {array} arr
@@ -252,8 +252,8 @@ function getMovingSum(arr) {
  *
  * Example :
  * [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 2, 4, 6, 8, 10 ]
- * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
- * [ "a" ] => []
+ * [ 'a', 'b', 'c' , null ]  => [ 'b', null ]
+ * [ 'a' ] => []
  */
 function getSecondItems(arr) {
   return arr.filter((_, i) => !((i + 1) % 2));
@@ -331,8 +331,9 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const arrayDigit = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => arrayDigit.indexOf(a) - arrayDigit.indexOf(b));
 }
 
 /**
@@ -510,9 +511,9 @@ function distinct(/* arr */) {
  *   )
  *            =>
  *   Map {
- *    "Belarus" => ["Brest", "Grodno", "Minsk"],
- *    "Russia" => ["Omsk", "Samara"],
- *    "Poland" => ["Lodz"]
+ *    'Belarus' => ['Brest', 'Grodno', 'Minsk'],
+ *    'Russia' => ['Omsk', 'Samara'],
+ *    'Poland' => ['Lodz']
  *   }
  */
 function group(/* array, keySelector, valueSelector */) {
