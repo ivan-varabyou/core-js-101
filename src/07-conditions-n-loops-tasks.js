@@ -27,8 +27,12 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  const multiplicity = (n) => (Math.ceil(num / n) * n === num);
+  if (multiplicity(3) && multiplicity(5)) return 'FizzBuzz';
+  if (multiplicity(3)) return 'Fizz';
+  if (multiplicity(5)) return 'Buzz';
+  return num;
 }
 
 
