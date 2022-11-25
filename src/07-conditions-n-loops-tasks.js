@@ -125,8 +125,20 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const minX1 = rect1.left;
+  const minY1 = rect1.top;
+  const minX2 = rect2.left;
+  const minY2 = rect2.top;
+  const maxX1 = rect1.left + rect1.width;
+  const maxY1 = rect1.top + rect1.height;
+  const maxX2 = rect2.left + rect2.width;
+  const maxY2 = rect2.top + rect2.height;
+  return !(
+    maxX1 < minX2
+    || maxY1 < minY2
+    || minX1 > maxX2
+    || minY1 > maxY2);
 }
 
 
