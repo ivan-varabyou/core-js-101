@@ -418,8 +418,30 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const { length } = pathes;
+  const str = `,${pathes.join(',')}`;
+  const pathFirst = pathes[0];
+  let result = '/';
+  let itemResult;
+  let myReg;
+  let lengthMatch;
+
+  const searchMatch = ((item) => {
+    myReg = new RegExp(`,${item}`, 'g');
+    return (str.match(myReg) || []).length;
+  });
+
+  if (searchMatch('/') < length) return '';
+
+  pathFirst.split('/').slice(1).forEach((item) => {
+    itemResult = `${result}${item}/`;
+    lengthMatch = searchMatch(itemResult);
+    if (lengthMatch === length || (lengthMatch > length && item === '/')) {
+      result = itemResult;
+    }
+  });
+  return result;
 }
 
 
