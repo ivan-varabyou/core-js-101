@@ -294,27 +294,28 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
-  /*
+function isCreditCardNumber(ccn) {
+  const str = ccn.toString();
+  const dig = +str[str.length - 1];
+  const pay = str.slice(0, str.length - 1).split('');
+  const doubDig = pay
+    .reverse()
+    .map((item, index) => ((index % 2 === 0) ? +item * 2 : +item));
 
- let sum = 0;
-  let numer = ccn;
-
-  while (numer > 0) {
-    const a = numer % 10;
-    numer = Math.floor(n / 10);
-
-    let b = (numer % 10) * 2;
-    numer = Math.floor(numer / 10);
-
-    if (b > 9) b -= 9;
-
-    sum += a + b;
+  const result = doubDig.reduce((prev, cur) => {
+    let nCur;
+    if (cur.toString().length > 1) {
+      nCur = [...cur.toString()]
+        .reduce((curC, prevC) => +prevC + +curC, 0);
+    } else {
+      nCur = +cur;
+    }
+    return prev + nCur;
+  }, 0);
+  if ((result + dig) % 10 === 0 || (result + dig) % 10 === 0) {
+    return true;
   }
-  return sum % 10 === 0;
-
-  */
+  return false;
 }
 
 /**
